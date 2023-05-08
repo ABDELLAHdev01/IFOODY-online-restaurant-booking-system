@@ -14,4 +14,9 @@ class resturant extends Model
         'email',
         'password',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

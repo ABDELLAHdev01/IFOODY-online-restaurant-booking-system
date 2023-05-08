@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('image3')->nullable();
             $table->string('availability');
             $table->string('approval');
+            $table->unsignedBigInteger('manger_id');
+            $table->foreign('manger_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

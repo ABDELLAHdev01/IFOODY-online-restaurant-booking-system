@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\resturant;
 use Illuminate\Http\Request;
 
@@ -38,13 +39,35 @@ class ResturantController extends Controller
      */
     public function applyresturant(request $request)
     {
+        // validation
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'image' => 'required',
+        ]);
+        // check if auth user had alredy a resturant and type approved
+        $resturant = resturant::where('manger_id', auth()->user()->id)->first();
+        if ($resturant) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User already has a resturant.',
+                    'data' => null
+                ], 404);
+
+
+        }
+
         // add resturant
+
         $resturant = new resturant;
         $resturant->name = $request->name;
         $resturant->address = $request->address;
         $resturant->phone = $request->phone;
         $resturant->email = $request->email;
         $resturant->image = $request->image;
+        $resturant->manger_id = auth()->user()->id;
         // if theres a second image and third image
         if($request->image2){
             $resturant->image2 = $request->image2;
@@ -80,12 +103,32 @@ class ResturantController extends Controller
             'image' => 'required',
         ]);
 
+
         $resturant = new resturant;
         $resturant->name = $request->name;
         $resturant->address = $request->address;
         $resturant->phone = $request->phone;
         $resturant->email = $request->email;
         $resturant->image = $request->image;
+        $resturant->manger_id = $request->manger_id;
+        // check if manger id is valid
+        $user = User::find($request->manger_id);
+        if (is_null($user)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not found.',
+                'data' => null
+            ], 404);
+        }
+        // check if user has a resturant
+        $resturant = resturant::where('manger_id', $request->manger_id)->first();
+        if ($resturant) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User already has a resturant.',
+                'data' => null
+            ], 404);
+        }
         // if theres a second image and third image
         if($request->image2){
             $resturant->image2 = $request->image2;
