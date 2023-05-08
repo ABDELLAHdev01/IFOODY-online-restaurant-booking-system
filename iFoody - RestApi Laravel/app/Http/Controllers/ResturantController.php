@@ -36,9 +36,31 @@ class ResturantController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function applyresturant(request $request)
     {
-        //
+        // add resturant
+        $resturant = new resturant;
+        $resturant->name = $request->name;
+        $resturant->address = $request->address;
+        $resturant->phone = $request->phone;
+        $resturant->email = $request->email;
+        $resturant->image = $request->image;
+        // if theres a second image and third image
+        if($request->image2){
+            $resturant->image2 = $request->image2;
+        }
+        if($request->image3){
+            $resturant->image3 = $request->image3;
+        }
+        $resturant->availability = "not available";
+        $resturant->approval = "pending";
+
+        $resturant->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Resturant created successfully',
+            'data' => $resturant
+        ], 201);
 
 
     }
@@ -155,5 +177,6 @@ class ResturantController extends Controller
             'message' => 'Resturant deleted successfully.',
             'data' => $resturant
         ], 200);
-    }
+
+   }
 }

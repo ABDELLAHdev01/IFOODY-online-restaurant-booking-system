@@ -32,6 +32,7 @@ Route::controller(ResturantController::class)->group(function () {
     // user could see all resturants without login
     Route::get('resturants', 'index');
     Route::post('resturant', 'show');
+    Route::post('apply', 'applyresturant');
 
     // admin could add, update, delete resturants
     Route::post('addresturants', 'store');
