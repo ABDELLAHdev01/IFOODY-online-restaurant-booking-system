@@ -187,6 +187,10 @@ class ResturantController extends Controller
         }
         $resturant->approval = "approved";
         $resturant->save();
+        // give the user the role of manger
+        $user = User::find($resturant->manger_id);
+        $user->assignRole('manger');    
+
         return response()->json([
             'success' => true,
             'message' => 'Resturant approved successfully.',
@@ -237,5 +241,6 @@ class ResturantController extends Controller
             'data' => $resturant
         ], 200);
 
-   }
+
+  }
 }
