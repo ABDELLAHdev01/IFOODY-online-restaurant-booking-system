@@ -130,9 +130,24 @@ class ResturantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(resturant $resturant)
+    public function approve(request $request)
     {
         //
+        $resturant = resturant::find($request->id);
+        if (is_null($resturant)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Resturant not found.',
+                'data' => null
+            ], 404);
+        }
+        $resturant->approval = "approved";
+        $resturant->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Resturant approved successfully.',
+            'data' => $resturant
+        ], 200);
     }
 
     /**

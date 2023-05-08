@@ -38,6 +38,7 @@ Route::controller(ResturantController::class)->group(function () {
     Route::post('addresturants', 'store');
     Route::post('resturant/{id}', 'update');
     Route::post('resturants', 'destroy');
+    Route::post('resturant/{id}/approve', 'approve');
 
 
 
