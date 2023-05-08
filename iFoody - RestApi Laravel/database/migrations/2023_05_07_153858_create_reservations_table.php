@@ -20,9 +20,7 @@ return new class extends Migration
             $table->time('time');
             $table->integer('duration');
             $table->integer('number_of_people');
-            $table->foreignId('table_id')->constrained()->onDelete('cascade');
-            $table->foreignId('resturant_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            
             $table->string('status');
             $table->string('approval');
             $table->timestamps();

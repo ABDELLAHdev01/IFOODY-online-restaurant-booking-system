@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('resturant_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('table_id')->constrained()->onDelete('cascade');
-            $table->foreignId('reservation_id')->constrained()->onDelete('cascade');
-            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('resturant_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('table_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('reservation_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->integer('total_price');
             $table->integer('discount');
             $table->integer('tax');

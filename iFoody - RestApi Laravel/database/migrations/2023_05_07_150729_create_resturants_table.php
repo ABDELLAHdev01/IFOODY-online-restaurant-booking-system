@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('image');
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
             $table->string('availability');
             $table->string('approval');
             $table->timestamps();

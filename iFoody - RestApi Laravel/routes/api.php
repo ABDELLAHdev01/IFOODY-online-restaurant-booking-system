@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ResturantController;
+// roles namespace
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +29,17 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(ResturantController::class)->group(function () {
+    // user could see all resturants without login
     Route::get('resturants', 'index');
-    // Route::get('resturants/{resturant}', 'show');
-    // Route::post('resturants', 'store');
-    // Route::put('resturants/{resturant}', 'update');
-    // Route::delete('resturants/{resturant}', 'destroy');
+    Route::post('resturant', 'show');
+
+    // admin could add, update, delete resturants
+    Route::post('addresturants', 'store');
+    Route::post('resturant/{id}', 'update');
+    Route::post('resturants', 'destroy');
+
+
+
+//
+
 });

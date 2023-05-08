@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('table_capacity');
             $table->integer('table_type');
             $table->integer('status');
-            $table->foreignId('resturant_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('resturant_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
