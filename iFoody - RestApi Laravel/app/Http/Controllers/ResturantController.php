@@ -101,6 +101,7 @@ class ResturantController extends Controller
             'phone' => 'required',
             'email' => 'required',
             'image' => 'required',
+
         ]);
 
 
@@ -121,8 +122,8 @@ class ResturantController extends Controller
             ], 404);
         }
         // check if user has a resturant
-        $resturant = resturant::where('manger_id', $request->manger_id)->first();
-        if ($resturant) {
+        $resturants = resturant::where('manger_id', $request->manger_id)->first();
+        if ($resturants) {
             return response()->json([
                 'success' => false,
                 'message' => 'User already has a resturant.',
@@ -136,7 +137,7 @@ class ResturantController extends Controller
         if($request->image3){
             $resturant->image3 = $request->image3;
         }
-        $resturant->availability = "not available";
+         $resturant->availability = "not available";
         $resturant->approval = "approved";
 
         $resturant->save();
