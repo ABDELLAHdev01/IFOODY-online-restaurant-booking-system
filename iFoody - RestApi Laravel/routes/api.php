@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MangerController;
 use App\Http\Controllers\ResturantController;
+use App\Http\Controllers\UserController;
+
 // roles namespace
 
 
@@ -28,13 +32,15 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 });
 
-Route::controller(ResturantController::class)->group(function () {
-    // user could see all resturants without login
+Route::controller(UserController::class)->group(function () {
+     // user could see all resturants without login
     Route::get('resturants', 'index');
     Route::post('resturant', 'show');
     Route::post('apply', 'applyresturant');
+});
 
-    // admin could add, update, delete resturants
+Route::controller(AdminController::class)->group(function () {
+
 Route::group(['middleware' => ['role:admin']], function () {
     Route::post('addresturants', 'store');
     Route::post('resturant/{id}', 'update');
@@ -42,14 +48,14 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('resturant/{id}/approve', 'approve');
 });
 
+});
 
+Route::controller(MangerController::class)->group(function () {
 
-//manger
-    Route::group(['middleware' => ['role:manager']], function () {
-        Route::get('manger/resturant', 'resturantByManger');
+     Route::group(['middleware' => ['role:manager']], function () {
+
+        Route::get('manger/resturant', 'index');
+
     });
 
-
-
-    
 });

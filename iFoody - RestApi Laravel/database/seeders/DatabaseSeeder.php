@@ -25,6 +25,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'manger User',
             'email' => 'manger@example.com',
             'password' => 'password'
-        ])->assignRole('manger');
+        ])->assignRole('manager');
     }
 }
