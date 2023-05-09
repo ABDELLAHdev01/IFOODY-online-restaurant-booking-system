@@ -55,6 +55,7 @@ Route::controller(MangerController::class)->group(function () {
      Route::group(['middleware' => ['role:manager']], function () {
 
         Route::get('manger/resturant', 'index');
+        Route::post('manger/update', 'update');
 
     });
 
