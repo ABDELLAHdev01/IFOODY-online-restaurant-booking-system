@@ -2,10 +2,14 @@
 
 namespace App\Http;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
+
+
+
     /**
      * The application's global HTTP middleware stack.
      *
@@ -23,6 +27,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
 
     ];
+
 
     /**
      * The application's route middleware groups.

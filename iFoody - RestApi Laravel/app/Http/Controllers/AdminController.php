@@ -121,6 +121,7 @@ class AdminController extends Controller
                 'data' => null
             ], 404);
         }
+        // soft delete
         $resturant->delete();
         return response()->json([
             'success' => true,
