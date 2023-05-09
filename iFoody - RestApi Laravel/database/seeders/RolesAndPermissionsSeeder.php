@@ -43,15 +43,15 @@ class RolesAndPermissionsSeeder extends Seeder
                 Permission::create(['name' => "UpdateBill"]);
                 Permission::create(['name' => "DeleteBill"]);
                 // user permissions
-                Permission::create(['name' => "CreateReservation"]);
-                Permission::create(['name' => "UpdateReservation"]);
-                Permission::create(['name' => "DeleteReservation"]);
-                Permission::create(['name' => "CreateOrder"]);
-                Permission::create(['name' => "UpdateOrder"]);
-                Permission::create(['name' => "DeleteOrder"]);
-                Permission::create(['name' => "CreateBill"]);
-                Permission::create(['name' => "UpdateBill"]);
-                Permission::create(['name' => "DeleteBill"]);
+                Permission::create(['name' => "makeReservation"]);
+                Permission::create(['name' => "UpdateHisReservation"]);
+                Permission::create(['name' => "DeleteHisReservation"]);
+                Permission::create(['name' => "CreateHisOrder"]);
+                Permission::create(['name' => "UpdateHisOrder"]);
+                Permission::create(['name' => "DeleteHisOrder"]);
+                Permission::create(['name' => "CreateHisBill"]);
+                Permission::create(['name' => "UpdateHisBill"]);
+                Permission::create(['name' => "DeleteHisBill"]);
 
                 // assign role to permission
                 $role = Role::findByName('admin');

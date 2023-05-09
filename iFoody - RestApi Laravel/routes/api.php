@@ -44,6 +44,12 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 
-//
+//manger
+    Route::group(['middleware' => ['role:manager']], function () {
+        Route::get('manger/resturant', 'resturantByManger');
+    });
 
+
+
+    
 });

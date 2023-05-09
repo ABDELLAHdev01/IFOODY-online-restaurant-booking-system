@@ -189,7 +189,7 @@ class ResturantController extends Controller
         $resturant->save();
         // give the user the role of manger
         $user = User::find($resturant->manger_id);
-        $user->assignRole('manger');    
+        $user->assignRole('manger');
 
         return response()->json([
             'success' => true,
@@ -242,5 +242,23 @@ class ResturantController extends Controller
         ], 200);
 
 
+  }
+
+  public function resturantByManger()
+  {
+      //
+      $resturant = resturant::where('manger_id', Auth()->user()->id )->first();
+      if (is_null($resturant)) {
+          return response()->json([
+              'success' => false,
+              'message' => 'Resturant not found.',
+              'data' => null
+          ], 404);
+      }
+      return response()->json([
+          'success' => true,
+          'message' => 'Resturant retrieved successfully.',
+          'data' => $resturant
+      ], 200);
   }
 }

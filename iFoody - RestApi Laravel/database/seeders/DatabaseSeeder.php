@@ -20,5 +20,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => 'password'
         ])->assignRole('admin');
+
+        \App\Models\User::factory()->create([
+            'name' => 'manger User',
+            'email' => 'manger@example.com',
+            'password' => 'password'
+        ])->assignRole('manger');
     }
 }
