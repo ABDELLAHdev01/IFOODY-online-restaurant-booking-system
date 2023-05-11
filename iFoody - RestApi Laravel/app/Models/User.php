@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 // use Laravel\Sanctum\HasApiTokens;
 
@@ -14,6 +16,8 @@ class User extends Authenticatable Implements JWTSubject
 {
     use HasFactory, Notifiable;
         use HasRoles;
+        use SoftDeletes;
+        use Prunable;
 
 
     /**
@@ -26,6 +30,12 @@ class User extends Authenticatable Implements JWTSubject
         'email',
         'password',
     ];
+
+     public function prunable()
+    {
+        return static::where('created_at', '<=', now()->subWeek(2));
+
+    }
 
     /**
      * The attributes that should be hidden for serialization.

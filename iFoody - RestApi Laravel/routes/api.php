@@ -56,6 +56,8 @@ Route::controller(MangerController::class)->group(function () {
 
         Route::get('manger/resturant', 'index');
         Route::post('manger/update', 'update');
+        Route::post('manger/addtable', 'addTabels');
+        Route::post('manger/updateTable', 'updateTabels');
 
     });
 

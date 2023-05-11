@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\table;
 use App\Models\resturant;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
@@ -107,7 +108,92 @@ class MangerController extends Controller
     public function destroy(request $request)
     {
         //
-        
+
     }
+
+    public function addTabels(request $request)
+    {
+        // check if resturant is approved
+
+
+        $resturant = resturant::where('manger_id', Auth()->user()->id )->first();
+        if ($resturant->approval != "approved") {
+            return response()->json([
+                'success' => false,
+                'message' => 'Resturant is pending or not approved.',
+                'data' => null
+            ], 404);
+        }
+        // check if table number alredy exist
+        $table = table::where('table_number', $request->table_number )->first();
+        if (!is_null($table)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Table number already exist.',
+                'data' => null
+            ], 404);
+        }
+
+        $table = new table();
+        $table->fill($request->only([
+            'table_number',
+            'table_capacity',
+            'table_type',
+            'status',
+
+
+
+        ]));
+        $table->resturant_id = $resturant->id;
+        $table->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'table added successfully',
+            'data' => $table
+        ], 200);
+
+
+
+    }
+
+    public function updateTabels(request $request)
+    {
+        // check if resturant is approved
+        $resturant = resturant::where('manger_id', Auth()->user()->id)->first();
+        if ($resturant->approval != "approved") {
+            return response()->json([
+                'success' => false,
+                'message' => 'Resturant is pending or not approved.',
+                'data' => null
+            ], 404);
+        }
+        // check if table numbe exist
+        $table = table::where('table_number', $request->table_number)->first();
+        if (is_null($table)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Table number not exist.',
+                'data' => null
+            ], 404);
+        }
+        // update only the filled fields
+        $table->fill($request->only([
+            'table_number',
+            'table_capacity',
+            'table_type',
+            'status',
+        ]));
+
+        $table->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'table updated successfully',
+            'data' => $table
+        ], 200);
+
+    }
+
+
 
 }

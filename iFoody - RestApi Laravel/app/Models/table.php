@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class table extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'table_number',
+        'table_capacity',
+        'table_type',
+        'status',
+    ];
 }
