@@ -20,9 +20,13 @@ return new class extends Migration
             $table->time('time');
             $table->integer('duration');
             $table->integer('number_of_people');
-            
             $table->string('status');
-            $table->string('approval');
+            $table->unsignedBigInteger('resturant_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('table_id');
+            $table->foreign('resturant_id')->references('id')->on('resturants')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('table_type');
             $table->integer('status');
             $table->unsignedBigInteger('resturant_id');
+            $table->softDeletes();
             $table->foreign('resturant_id')->references('id')->on('resturants')->onDelete('cascade');
             // $table->foreignId('resturant_id')->constrained()->onDelete('cascade');
             $table->timestamps();

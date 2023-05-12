@@ -194,6 +194,36 @@ class MangerController extends Controller
 
     }
 
+    public function removeTable(request $request){
+        // check if resturant is approved
+        //  $resturant = resturant::where('manger_id', Auth()->user()->id)->first();
+        // if ($resturant->approval != "approved") {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Resturant is pending or not approved.',
+        //         'data' => null
+        //     ], 404);
+        // }
+        // check if table numbe exist
+        $table = table::where('table_number', $request->table_number)->first();
+        // if (is_null($table)) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Table number not exist.',
+        //         'data' => null
+        //     ], 404);
+        // }
+        $table->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'table deleted successfully',
+            'data' => $table
+        ], 200);
+
+
+
+    }
+
 
 
 }

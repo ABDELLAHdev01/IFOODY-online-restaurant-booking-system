@@ -26,7 +26,7 @@ class PruneModelCommand extends Command
     public function handle()
     {
         //
-            $prunableModels = ['App\Models\User', 'App\Models\resturant'];
+            $prunableModels = ['App\Models\User', 'App\Models\resturant' , 'App\Models\table'];
             foreach ($prunableModels as $prunableModel) {
                 $this->prune($prunableModel);
             }

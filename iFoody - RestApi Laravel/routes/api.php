@@ -37,6 +37,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('resturants', 'index');
     Route::post('resturant', 'show');
     Route::post('apply', 'applyresturant');
+    Route::post('bookTable', 'bookTable');
 });
 
 Route::controller(AdminController::class)->group(function () {
@@ -58,6 +59,7 @@ Route::controller(MangerController::class)->group(function () {
         Route::post('manger/update', 'update');
         Route::post('manger/addtable', 'addTabels');
         Route::post('manger/updateTable', 'updateTabels');
+        Route::post('manger/deleteTable', 'removeTable');
 
     });
 
